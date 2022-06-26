@@ -6,9 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora HTML</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+    <div class="container">
+        <div class="calculator">
+            <div class="calculator__display">
+                <p class="calculator__display-content js-display">456</p>
+            </div>
+            <div class="calculator__row">
+                <div class="calculator__key calculator__key--large" data-key="clear">
+                    <p class="calculator__key-content">AC</p>
+                </div>
+                <div class="calculator__key" data-key="delete">
+                    <i class="calculator__key-content fa-solid fa-rotate-left" aria-hidden="true"></i>
+                    <span class="visually-hidden">Delete</span>
+                </div>
+                <div class="calculator__key calculator__key--accent" data-key="division">
+                    <p class="calculator__key-content">÷</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
