@@ -1,5 +1,6 @@
 :root {
     --color-white: hsl(0, 0%, 99%);
+    --color-background: var(--color-white);
     --color-light-shades: hsl(0, 0%, 87%);
     --color-light-accent: hsl(0, 0%, 72%);
     --color-dark-accent: hsl(29, 86%, 57%);
@@ -10,4 +11,25 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
