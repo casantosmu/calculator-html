@@ -1,3 +1,11 @@
+:root {
+    --color-white: hsl(0, 0%, 99%);
+    --color-light-shades: hsl(0, 0%, 87%);
+    --color-light-accent: hsl(0, 0%, 72%);
+    --color-dark-accent: hsl(29, 86%, 57%);
+    --color-dark-shades: hsl(223, 23%, 22%);
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
