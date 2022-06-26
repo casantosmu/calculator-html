@@ -43,7 +43,7 @@ body {
     outline: 1px solid var(--color-light-accent);
 }
 
-.calculator__display-content {
+.calculator__current-value {
     position: absolute;
     right: 1.75rem;
     bottom: .50rem;
