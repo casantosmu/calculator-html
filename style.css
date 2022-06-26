@@ -1,7 +1,7 @@
 :root {
     /* === COLORS VARIABLES === */
     --color-white: hsl(0, 0%, 99%);
-    --color-back: hsl(210, 11%, 15%);
+    --color-black: hsl(210, 11%, 15%);
     --color-background: var(--color-white);
     --color-light-shades: hsl(0, 0%, 87%);
     --color-light-accent: hsl(0, 0%, 72%);
@@ -98,7 +98,7 @@ body {
 
 .calculator__key-content {
     font-size: var(--font-size-500);
-    color: var(--color-back);
+    color: var(--color-black);
 }
 
 .calculator__key-content--accent {
