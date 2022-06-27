@@ -1,5 +1,6 @@
+/* ========== SETTINGS ========== */
 :root {
-    /* === COLORS VARIABLES === */
+    /* ===== Colors ===== */
     --color-white: hsl(0, 0%, 99%);
     --color-black: hsl(210, 11%, 15%);
     --color-background: var(--color-white);
@@ -8,19 +9,21 @@
     --color-dark-accent: hsl(29, 86%, 57%);
     --color-dark-shades: hsl(223, 23%, 22%);
 
-    /* === FONT SIZE VARIABLES === */
+    /* ===== Font sizes ===== */
     --font-size-400: 16px;
     --font-size-500: 18px;
     --font-size-700: 24px;
     --font-size-900: 30px;
 }
 
+/* ========== RESET ========== */
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+/* ========== BASE ========== */
 body {
     background-color: var(--color-background);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
@@ -33,6 +36,8 @@ body {
     min-height: 100vh;
 }
 
+/* ========== COMPONENTS ========== */
+/* ===== Calculator ===== */
 .calculator__row {
     display: flex;
 }
@@ -106,6 +111,7 @@ body {
     color: var(--color-white);
 }
 
+/* ========== UTILITIES ========== */
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);

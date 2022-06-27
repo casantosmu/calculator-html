@@ -1,11 +1,14 @@
+// **** Web Deployment of Windows 10 Desktop Calculator ****
+
 const enteredValuesElement = document.querySelector(".js-entered-values");
 const currentValueElement = document.querySelector(".js-current-value");
 const keyboardElement = document.querySelector(".js-keyboard");
 
+
 const calculator = {
     enteredValue: null,
     enteredOperation: null,
-    finished: true,
+    finished: true, // Check if operation is done
     operations: [
         "division",
         "multiplication",
@@ -19,6 +22,12 @@ const calculator = {
         plus: argument => calculator.enteredValue + argument
     }
 }
+
+// KEYDATA
+// Includes values like:
+// * All numbers (1,2,3,4,5,6,7,8,9,0.)
+// * Operations included in calculator.operations.
+// * Clear and delete
 
 keyboardElement.addEventListener("click", e => {
     const keyData = e.target.closest("[data-key]").dataset.key;
@@ -64,5 +73,5 @@ keyboardElement.addEventListener("click", e => {
             calculator.finished = true;
         }
     }
-    console.log(calculator)
+    // console.log(calculator) // Uncomment if you want to see the state of calculator object :)
 })
