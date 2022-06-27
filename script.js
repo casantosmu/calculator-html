@@ -5,7 +5,7 @@ const keyboardElement = document.querySelector(".js-keyboard");
 const calculator = {
     enteredValue: null,
     enteredOperation: null,
-    clearCurrentValue: true,
+    finished: true,
     operations: [
         "division",
         "multiplication",
@@ -24,9 +24,9 @@ keyboardElement.addEventListener("click", e => {
     const keyData = e.target.closest("[data-key]").dataset.key;
     const currentValueContent = currentValueElement.textContent;
     if (!isNaN(keyData)) {
-        if (calculator.clearCurrentValue) {
+        if (calculator.finished || currentValueContent === "0") {
             currentValueElement.textContent = keyData;
-            calculator.clearCurrentValue = false;
+            calculator.finished = false;
         }
         else if (currentValueContent.length < 13) {
             currentValueElement.textContent += keyData;
@@ -35,7 +35,7 @@ keyboardElement.addEventListener("click", e => {
     else if (keyData === "decimal" && !currentValueContent.includes(".")) {
         currentValueElement.textContent += ".";
     }
-    else if (keyData === "clear" && !calculator.clearCurrentValue) {
+    else if (keyData === "clear" && !calculator.finished) {
         currentValueElement.textContent = currentValueContent.slice(0, -1);
     }
     else if (keyData === "equals") {
@@ -45,23 +45,23 @@ keyboardElement.addEventListener("click", e => {
         const operationSignEntered = e.target.textContent;
         if (calculator.enteredValue === null) {
             enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
+            currentValueElement.textContent = +currentValueContent;
             calculator.enteredValue = +currentValueContent;
             calculator.enteredOperation = keyData;
-            calculator.clearCurrentValue = true;
+            calculator.finished = true;
         }
-        else if (!calculator.clearCurrentValue) {
+        else if (calculator.finished) {
+            calculator.enteredOperation = keyData;
+            enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
+        }
+        else {
             const currentOperation = calculator.enteredOperation || keyData;
             const output = calculator.operate[currentOperation](+currentValueContent);
-            enteredValuesElement.textContent = `${output} ${calculator.enteredOperation}`;
             enteredValuesElement.textContent = `${output} ${operationSignEntered}`;
             currentValueElement.textContent = output;
             calculator.enteredValue = output;
             calculator.enteredOperation = keyData;
-            calculator.clearCurrentValue = true;
-        }
-        else if (calculator.enteredOperation) {
-            calculator.enteredOperation = keyData;
-            enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
+            calculator.finished = true;
         }
     }
     console.log(calculator)
