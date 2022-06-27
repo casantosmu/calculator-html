@@ -41,7 +41,7 @@ keyboardElement.addEventListener("click", e => {
     else if (keyData === "equals") {
         enteredValuesElement.textContent += ` ${currentValueContent} =`;
     }
-    else if (calculator.operations[keyData]) {
+    else if (calculator.operations.includes(keyData)) {
         const operationSignEntered = e.target.textContent;
         if (!calculator.enteredValue) {
             enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
