@@ -43,20 +43,26 @@ keyboardElement.addEventListener("click", e => {
     }
     else if (calculator.operations.includes(keyData)) {
         const operationSignEntered = e.target.textContent;
-        if (!calculator.enteredValue) {
+        if (calculator.enteredValue === null) {
             enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
             calculator.enteredValue = +currentValueContent;
             calculator.enteredOperation = keyData;
             calculator.clearCurrentValue = true;
-        } else {
+        }
+        else if (!calculator.clearCurrentValue) {
             const currentOperation = calculator.enteredOperation || keyData;
             const output = calculator.operate[currentOperation](+currentValueContent);
             enteredValuesElement.textContent = `${output} ${calculator.enteredOperation}`;
             enteredValuesElement.textContent = `${output} ${operationSignEntered}`;
             currentValueElement.textContent = output;
             calculator.enteredValue = output;
-            calculator.enteredOperation = null;
+            calculator.enteredOperation = keyData;
             calculator.clearCurrentValue = true;
         }
+        else if (calculator.enteredOperation) {
+            calculator.enteredOperation = keyData;
+            enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
+        }
     }
+    console.log(calculator)
 })
