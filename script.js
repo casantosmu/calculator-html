@@ -41,21 +41,41 @@ keyboardElement.addEventListener("click", e => {
         else if (currentValueContent.length < 13) {
             currentValueElement.textContent += keyData;
         }
+        if (calculator.enteredValue === null) enteredValuesElement.textContent = "";
     }
     else if (keyData === "decimal" && !currentValueContent.includes(".")) {
         currentValueElement.textContent += ".";
     }
-    else if (keyData === "clear" && !calculator.finished) {
-        currentValueElement.textContent = currentValueContent.slice(0, -1);
+    else if (keyData === "clear") {
+        if (!calculator.finished) {
+            currentValueElement.textContent = currentValueContent.slice(0, -1);
+        } else if (calculator.enteredValue === null) {
+            enteredValuesElement.textContent = "";
+        }
     }
     else if (keyData === "equals") {
-        enteredValuesElement.textContent += ` ${currentValueContent} =`;
+        if (calculator.enteredValue === null) {
+            enteredValuesElement.textContent = ` ${+currentValueContent} =`;
+            calculator.finished = true;
+        }
+        else {
+            const currentOperation = calculator.enteredOperation;
+            const output = roundTo(calculator.operate[currentOperation](+currentValueContent), 3);
+            if (isNaN(output)) {
+                enteredValuesElement.textContent = 'No se puede calcular';
+                calculator.enteredValue = +currentValueContent;
+            } else {
+                enteredValuesElement.textContent += ` ${+currentValueContent} =`;
+                currentValueElement.textContent = output;
+                calculator.enteredValue = null;
+            }
+            calculator.finished = true;
+        }
     }
     else if (calculator.operations.includes(keyData)) {
         const operationSignEntered = e.target.textContent;
         if (calculator.enteredValue === null) {
             enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
-            currentValueElement.textContent = +currentValueContent;
             calculator.enteredValue = +currentValueContent;
             calculator.enteredOperation = keyData;
             calculator.finished = true;
@@ -68,7 +88,6 @@ keyboardElement.addEventListener("click", e => {
             const currentOperation = calculator.enteredOperation;
             // const currentOperation = calculator.enteredOperation || keyData;
             const output = roundTo(calculator.operate[currentOperation](+currentValueContent), 3);
-            console.log(output)
             if (isNaN(output)) {
                 enteredValuesElement.textContent = 'No se puede calcular';
                 calculator.enteredValue = +currentValueContent;
