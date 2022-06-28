@@ -54,7 +54,7 @@ keyboardElement.addEventListener("click", e => {
         }
     }
     else if (keyData === "delete") {
-        currentValueElement.textContent = "";
+        currentValueElement.textContent = "0";
     }
     else if (keyData === "equals") {
         if (calculator.enteredValue === null) {
@@ -66,7 +66,8 @@ keyboardElement.addEventListener("click", e => {
             const output = roundTo(calculator.operate[currentOperation](+currentValueContent), 3);
             if (isNaN(output)) {
                 enteredValuesElement.textContent = 'No se puede calcular';
-                calculator.enteredValue = +currentValueContent;
+                calculator.enteredValue = null;
+                calculator.enteredOperation = null;
             } else {
                 enteredValuesElement.textContent += ` ${+currentValueContent} =`;
                 currentValueElement.textContent = output;
@@ -89,11 +90,11 @@ keyboardElement.addEventListener("click", e => {
         }
         else {
             const currentOperation = calculator.enteredOperation;
-            // const currentOperation = calculator.enteredOperation || keyData;
             const output = roundTo(calculator.operate[currentOperation](+currentValueContent), 3);
             if (isNaN(output)) {
                 enteredValuesElement.textContent = 'No se puede calcular';
-                calculator.enteredValue = +currentValueContent;
+                calculator.enteredValue = null;
+                calculator.enteredOperation = null;
             } else {
                 enteredValuesElement.textContent = `${output} ${operationSignEntered}`;
                 currentValueElement.textContent = output;
