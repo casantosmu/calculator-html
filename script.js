@@ -4,6 +4,7 @@ const enteredValuesElement = document.querySelector(".js-entered-values");
 const currentValueElement = document.querySelector(".js-current-value");
 const keyboardElement = document.querySelector(".js-keyboard");
 
+const roundTo = (value, decimals) => Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 
 const calculator = {
     enteredValue: null,
@@ -60,18 +61,25 @@ keyboardElement.addEventListener("click", e => {
             calculator.finished = true;
         }
         else if (calculator.finished) {
-            calculator.enteredOperation = keyData;
             enteredValuesElement.textContent = `${+currentValueContent} ${operationSignEntered}`;
+            calculator.enteredOperation = keyData;
         }
         else {
-            const currentOperation = calculator.enteredOperation || keyData;
-            const output = calculator.operate[currentOperation](+currentValueContent);
-            enteredValuesElement.textContent = `${output} ${operationSignEntered}`;
-            currentValueElement.textContent = output;
-            calculator.enteredValue = output;
+            const currentOperation = calculator.enteredOperation;
+            // const currentOperation = calculator.enteredOperation || keyData;
+            const output = roundTo(calculator.operate[currentOperation](+currentValueContent), 3);
+            console.log(output)
+            if (isNaN(output)) {
+                enteredValuesElement.textContent = 'No se puede calcular';
+                calculator.enteredValue = +currentValueContent;
+            } else {
+                enteredValuesElement.textContent = `${output} ${operationSignEntered}`;
+                currentValueElement.textContent = output;
+                calculator.enteredValue = output;
+            }
             calculator.enteredOperation = keyData;
             calculator.finished = true;
         }
     }
-    // console.log(calculator) // Uncomment if you want to see the state of calculator object :)
+    console.log(calculator) // Uncomment if you want to see the state of calculator object :)
 })
