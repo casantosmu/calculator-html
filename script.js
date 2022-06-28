@@ -104,5 +104,5 @@ keyboardElement.addEventListener("click", e => {
             calculator.finished = true;
         }
     }
-    console.log(calculator) // Uncomment if you want to see the state of calculator object :)
+    // console.log(calculator) // Uncomment if you want to see the state of calculator object :)
 })

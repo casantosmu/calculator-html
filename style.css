@@ -96,11 +96,6 @@ body {
     background-color: var(--color-dark-accent);
 }
 
-.calculator__key--accent:hover {
-    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
-
-}
-
 .calculator__key-content {
     font-size: var(--font-size-500);
     color: var(--color-black);
