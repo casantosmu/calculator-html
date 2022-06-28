@@ -53,6 +53,9 @@ keyboardElement.addEventListener("click", e => {
             enteredValuesElement.textContent = "";
         }
     }
+    else if (keyData === "delete") {
+        currentValueElement.textContent = "";
+    }
     else if (keyData === "equals") {
         if (calculator.enteredValue === null) {
             enteredValuesElement.textContent = ` ${+currentValueContent} =`;
